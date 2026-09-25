@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Report a Bug - SaaS Help Center</title>
+
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
+        <link rel="stylesheet" href="css/animations.css" />
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <div class="logo">
+                    <i class="fas fa-headset"></i>
+                    <h1>SaaS Help Center</h1>
+                </div>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="bug-report.html" class="active">Report Bug</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <section class="bug-report-section">
+            <div class="container">
+                <div class="page-header">
+                    <h2><i class="fas fa-bug"></i> Report a Bug</h2>
+                    <p>Help us improve by reporting issues you encounter. Please provide as much detail as possible.</p>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <p class="progress-text">Form Completion: <span id="progress-percentage">0</span>%</p>
+
+                <form id="bug-report-form" class="bug-form">
+                    <div class="form-section">
+                        <h3><i class="fas fa-info-circle"></i> Issue Details</h3>
+
+                        <div class="form-group">
+                            <label for="bug-title">Bug Title <span class="required">*</span></label>
+                            <input
+                                type="text"
+                                id="bug-title"
+                                name="bug-title"
+                                placeholder="Brief description of the issue"
+                                required
+                            />
+                            <span class="error-message" id="title-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bug-category">Category <span class="required">*</span></label>
+                            <select id="bug-category" name="bug-category" required>
+                                <option value="">Select a category</option>
+                                <option value="ui">UI/UX Issue</option>
+                                <option value="functionality">Functionality Bug</option>
+                                <option value="performance">Performance Issue</option>
+                                <option value="security">Security Concern</option>
+                                <option value="integration">Integration Problem</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="error-message" id="category-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bug-priority">Priority Level <span class="required">*</span></label>
+                            <div class="priority-options">
+                                <label class="priority-option">
+                                    <input type="radio" name="priority" value="low" required />
+                                    <span class="priority-label low"> <i class="fas fa-flag"></i> Low </span>
+                                </label>
+                                <label class="priority-option">
+                                    <input type="radio" name="priority" value="medium" />
+                                    <span class="priority-label medium"> <i class="fas fa-flag"></i> Medium </span>
+                                </label>
+                                <label class="priority-option">
+                                    <input type="radio" name="priority" value="high" />
+                                    <span class="priority-label high"> <i class="fas fa-flag"></i> High </span>
+                                </label>
+                                <label class="priority-option">
+                                    <input type="radio" name="priority" value="critical" />
+                                    <span class="priority-label critical"> <i class="fas fa-flag"></i> Critical </span>
+                                </label>
+                            </div>
+                            <span class="error-message" id="priority-error"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-list-ol"></i> Steps to Reproduce</h3>
+
+                        <div class="form-group">
+                            <label for="steps">Describe the steps <span class="required">*</span></label>
+                            <textarea
+                                id="steps"
+                                name="steps"
+                                rows="5"
+                                placeholder="1. Go to...&#10;2. Click on...&#10;3. Observe that..."
+                                required
+                            ></textarea>
+                            <span class="char-count"><span id="steps-count">0</span>/1000</span>
+                            <span class="error-message" id="steps-error"></span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expected">Expected Behavior <span class="required">*</span></label>
+                                <textarea
+                                    id="expected"
+                                    name="expected"
+                                    rows="3"
+                                    placeholder="What should happen?"
+                                    required
+                                ></textarea>
+                                <span class="error-message" id="expected-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="actual">Actual Behavior <span class="required">*</span></label>
+                                <textarea
+                                    id="actual"
+                                    name="actual"
+                                    rows="3"
+                                    placeholder="What actually happened?"
+                                    required
+                                ></textarea>
+                                <span class="error-message" id="actual-error"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-desktop"></i> Environment Information</h3>
+                        <p class="section-note">
+                            This information is automatically detected to help us reproduce the issue
+                        </p>
+
+                        <div class="env-info-grid">
+                            <div class="env-info-item">
+                                <label><i class="fas fa-globe"></i> Browser</label>
+                                <input type="text" id="browser-info" readonly />
+                            </div>
+                            <div class="env-info-item">
+                                <label><i class="fas fa-desktop"></i> Screen Resolution</label>
+                                <input type="text" id="screen-info" readonly />
+                            </div>
+                            <div class="env-info-item">
+                                <label><i class="fas fa-expand"></i> Viewport Size</label>
+                                <input type="text" id="viewport-info" readonly />
+                            </div>
+                            <div class="env-info-item">
+                                <label><i class="fas fa-language"></i> Language</label>
+                                <input type="text" id="language-info" readonly />
+                            </div>
+                            <div class="env-info-item">
+                                <label><i class="fas fa-clock"></i> Timezone</label>
+                                <input type="text" id="timezone-info" readonly />
+                            </div>
+                            <div class="env-info-item">
+                                <label><i class="fas fa-wifi"></i> Connection</label>
+                                <input type="text" id="connection-info" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Your Information</h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="user-name">Your Name <span class="required">*</span></label>
+                                <input type="text" id="user-name" name="user-name" placeholder="John Doe" required />
+                                <span class="error-message" id="name-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="user-email">Email Address <span class="required">*</span></label>
+                                <input
+                                    type="email"
+                                    id="user-email"
+                                    name="user-email"
+                                    placeholder="john@example.com"
+                                    required
+                                />
+                                <span class="error-message" id="email-error"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user-account">Account ID (Optional)</label>
+                            <input
+                                type="text"
+                                id="user-account"
+                                name="user-account"
+                                placeholder="Your account ID if applicable"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-paperclip"></i> Attachments</h3>
+
+                        <div class="form-group">
+                            <label for="screenshot">Screenshot/Video (Max 5MB)</label>
+                            <div class="file-upload-area" id="file-upload-area">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag & drop files here or click to browse</p>
+                                <input
+                                    type="file"
+                                    id="screenshot"
+                                    name="screenshot"
+                                    accept="image/*,video/*"
+                                    multiple
+                                />
+                            </div>
+                            <div id="file-preview" class="file-preview"></div>
+                            <span class="error-message" id="file-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="additional-info">Additional Information</label>
+                            <textarea
+                                id="additional-info"
+                                name="additional-info"
+                                rows="3"
+                                placeholder="Any other details that might help us understand the issue..."
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="save-draft">
+                            <i class="fas fa-save"></i> Save as Draft
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Bug Report
+                        </button>
+                    </div>
+                </form>
+
+                <div id="success-message" class="success-message" style="display: none">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Bug Report Submitted Successfully!</h3>
+                    <p>Thank you for helping us improve. Our team will review your report and get back to you soon.</p>
+                    <p><strong>Reference ID:</strong> <span id="reference-id"></span></p>
+                    <button class="btn btn-primary" onclick="location.reload()">
+                        <i class="fas fa-plus"></i> Submit Another Report
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>About Us</h4>
+                        <p>We provide 24/7 support to help you succeed with our platform.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="bug-report.html">Report Bug</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contact Info</h4>
+                        <p><i class="fas fa-envelope"></i> support@saashelp.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-clock"></i> 24/7 Available</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 SaaS Help Center. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="js/main.js"></script>
+        <script src="js/bug-report.js"></script>
+        <script src="js/form-validation.js"></script>
+    </body>
+</html>

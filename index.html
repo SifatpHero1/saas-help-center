@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SaaS Help Center - Support Portal</title>
+
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
+        <link rel="stylesheet" href="css/animations.css" />
+
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Font Awesome for Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    </head>
+    <body>
+        <!-- Header Section -->
+        <header class="header">
+            <div class="container">
+                <div class="logo">
+                    <i class="fas fa-headset"></i>
+                    <h1>SaaS Help Center</h1>
+                </div>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="bug-report.html">Report Bug</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero Section with Search -->
+        <section class="hero">
+            <div class="container">
+                <h2>How can we help you today?</h2>
+                <p>Search our knowledge base or browse categories below</p>
+
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search for help articles..." />
+                    <button id="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <div class="container">
+                <h3>Quick Actions</h3>
+                <div class="action-grid">
+                    <a href="bug-report.html" class="action-card">
+                        <i class="fas fa-bug"></i>
+                        <h4>Report a Bug</h4>
+                        <p>Found an issue? Let us know</p>
+                    </a>
+                    <a href="contact.html" class="action-card">
+                        <i class="fas fa-comments"></i>
+                        <h4>Live Chat</h4>
+                        <p>Chat with our support team</p>
+                    </a>
+                    <a href="faq.html" class="action-card">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>Browse FAQ</h4>
+                        <p>Find answers to common questions</p>
+                    </a>
+                    <a href="contact.html" class="action-card">
+                        <i class="fas fa-video"></i>
+                        <h4>Video Call</h4>
+                        <p>Schedule a video consultation</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Articles -->
+        <section class="popular-articles">
+            <div class="container">
+                <h3>Popular Help Articles</h3>
+                <div class="articles-list">
+                    <article class="article-item">
+                        <i class="fas fa-file-alt"></i>
+                        <div class="article-content">
+                            <h4>Getting Started with Our Platform</h4>
+                            <p>Learn the basics of setting up your account and navigating the dashboard.</p>
+                            <span class="article-meta">
+                                <i class="fas fa-clock"></i> 5 min read <i class="fas fa-eye"></i> 2.5k views
+                            </span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <i class="fas fa-file-alt"></i>
+                        <div class="article-content">
+                            <h4>Troubleshooting Login Issues</h4>
+                            <p>Solutions for common login problems and password reset procedures.</p>
+                            <span class="article-meta">
+                                <i class="fas fa-clock"></i> 3 min read <i class="fas fa-eye"></i> 1.8k views
+                            </span>
+                        </div>
+                    </article>
+                    <article class="article-item">
+                        <i class="fas fa-file-alt"></i>
+                        <div class="article-content">
+                            <h4>Integrating with Third-Party Apps</h4>
+                            <p>Step-by-step guide to connect your favorite tools with our platform.</p>
+                            <span class="article-meta">
+                                <i class="fas fa-clock"></i> 7 min read <i class="fas fa-eye"></i> 3.2k views
+                            </span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>About Us</h4>
+                        <p>We provide 24/7 support to help you succeed with our platform.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="bug-report.html">Report Bug</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contact Info</h4>
+                        <p><i class="fas fa-envelope"></i> support@saashelp.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-clock"></i> 24/7 Available</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 SaaS Help Center. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JavaScript Files -->
+        <script src="js/main.js"></script>
+        <script src="js/search.js"></script>
+    </body>
+</html>
