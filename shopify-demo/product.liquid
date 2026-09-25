@@ -1,0 +1,245 @@
+<!-- Shopify Product Page Customization -->
+<div class="custom-product-page">
+  <div class="product-gallery">
+    {% if product.images.size > 0 %}
+      <div class="main-image">
+        <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
+      </div>
+      <div class="thumbnail-grid">
+        {% for image in product.images %}
+          <div class="thumbnail">
+            <img src="{{ image | img_url: 'compact' }}" alt="{{ product.title }}">
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="product-info">
+    <h1 class="product-title">{{ product.title }}</h1>
+    
+    {% if product.vendor %}
+      <p class="product-vendor">By {{ product.vendor }}</p>
+    {% endif %}
+
+    <div class="product-price">
+      {% if product.compare_at_price > product.price %}
+        <span class="compare-price">{{ product.compare_at_price | money }}</span>
+        <span class="sale-price">{{ product.price | money }}</span>
+        <span class="sale-badge">Sale!</span>
+      {% else %}
+        <span class="regular-price">{{ product.price | money }}</span>
+      {% endif %}
+    </div>
+
+    <div class="product-description">
+      {{ product.description }}
+    </div>
+
+    {% if product.options.size > 0 %}
+      <div class="product-variants">
+        {% for option in product.options_with_values %}
+          <div class="variant-selector">
+            <label>{{ option.name }}:</label>
+            <select id="variant-{{ option.name | handle }}">
+              {% for value in option.values %}
+                <option value="{{ value }}">{{ value }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="product-quantity">
+      <label>Quantity:</label>
+      <input type="number" id="quantity" value="1" min="1">
+    </div>
+
+    <button id="add-to-cart" class="btn-add-to-cart">
+      <i class="fas fa-shopping-cart"></i>
+      Add to Cart
+    </button>
+
+    <div class="product-features">
+      <div class="feature">
+        <i class="fas fa-truck"></i>
+        <span>Free Shipping</span>
+      </div>
+      <div class="feature">
+        <i class="fas fa-undo"></i>
+        <span>30-Day Returns</span>
+      </div>
+      <div class="feature">
+        <i class="fas fa-shield-alt"></i>
+        <span>Secure Checkout</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .custom-product-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .product-gallery .main-image img {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .thumbnail img {
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .thumbnail img:hover {
+    transform: scale(1.05);
+  }
+
+  .product-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-vendor {
+    color: #6b7280;
+    margin-bottom: 1rem;
+  }
+
+  .product-price {
+    margin-bottom: 1.5rem;
+  }
+
+  .compare-price {
+    text-decoration: line-through;
+    color: #9ca3af;
+    margin-right: 1rem;
+  }
+
+  .sale-price {
+    font-size: 2rem;
+    color: #ef4444;
+    font-weight: bold;
+  }
+
+  .regular-price {
+    font-size: 2rem;
+    color: #1f2937;
+    font-weight: bold;
+  }
+
+  .sale-badge {
+    background: #ef4444;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+  }
+
+  .variant-selector {
+    margin-bottom: 1rem;
+  }
+
+  .variant-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .variant-selector select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+  }
+
+  .product-quantity {
+    margin-bottom: 1.5rem;
+  }
+
+  .product-quantity input {
+    width: 100px;
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+  }
+
+  .btn-add-to-cart {
+    width: 100%;
+    padding: 1rem;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-add-to-cart:hover {
+    background: #1e40af;
+    transform: translateY(-2px);
+  }
+
+  .product-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .feature {
+    text-align: center;
+  }
+
+  .feature i {
+    font-size: 2rem;
+    color: #3b82f6;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .custom-product-page {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('add-to-cart').addEventListener('click', function() {
+    const quantity = document.getElementById('quantity').value;
+    console.log('🛒 Added to cart:', {
+      product: '{{ product.title }}',
+      quantity: quantity,
+      price: '{{ product.price | money }}'
+    });
+    
+    alert('Product added to cart! (Demo mode)');
+  });
+
+  document.querySelectorAll('.thumbnail img').forEach(img => {
+    img.addEventListener('click', function() {
+      const mainImage = document.querySelector('.main-image img');
+      mainImage.src = this.src.replace('compact', 'large');
+    });
+  });
+</script>
